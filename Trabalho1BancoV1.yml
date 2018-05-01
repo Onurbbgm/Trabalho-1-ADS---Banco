@@ -1,0 +1,82 @@
+!PARAMETERS
+rndnumbersPerSeed: 100000
+seeds:
+- 2176
+- 103
+- 1109
+- 3456
+- 991
+- 2323
+- 9211
+- 1212
+- 5131
+- 7208
+- 9172
+- 9922
+- 8324
+- 5011
+- 2931
+
+arrivals:
+   SENHA: 1.0
+
+queues:
+   SENHA:
+      servers: 1
+      capacity: 10
+      minArrival: 1.0
+      maxArrival: 5.0
+      minService: 0.08
+      maxService: 1.0
+   CAIXA:
+      servers: 4
+      capacity: 20
+      minService: 10.0
+      maxService: 20.0
+   ATPESSOAL:
+      servers: 4
+      capacity: 20
+      minService: 10.0
+      maxService: 25.0
+   GERENTE:
+      servers: 1
+      capacity: 5
+      minService: 10.0
+      maxService: 50.0
+   FINANCEIRO:
+      servers: 3
+      capacity: 10
+      minService: 10.0
+      maxService: 30.0
+
+network:
+-  source: SENHA
+   target: CAIXA
+   probability: 0.6
+-  source: SENHA
+   target: ATPESSOAL
+   probability: 0.3
+-  source: CAIXA
+   target: ATPESSOAL
+   probability: 0.4
+-  source: ATPESSOAL
+   target: CAIXA
+   probability: 0.1
+-  source: ATPESSOAL
+   target: FINANCEIRO
+   probability: 0.3
+-  source: ATPESSOAL
+   target: GERENTE
+   probability: 0.2
+-  source: GERENTE
+   target: ATPESSOAL
+   probability: 0.4
+-  source: GERENTE
+   target: FINANCEIRO
+   probability: 0.2
+-  source: FINANCEIRO
+   target: GERENTE
+   probability: 0.3
+-  source: FINANCEIRO
+   target: ATPESSOAL
+   probability: 0.2
